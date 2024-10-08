@@ -10,7 +10,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.devrachit.playground.ui.theme.PlaygroundTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,10 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             PlaygroundTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    MyApp(modifier =Modifier.padding(innerPadding))
                 }
             }
         }
@@ -31,17 +30,21 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun MyApp(modifier:Modifier?= null){
+    PlaygroundTheme {
+        Text(
+            text = "Hello, World!",
+            color= colorResource(id = R.color.teal_700),
+            modifier = modifier?.padding(16.dp).let { it ?: Modifier.padding(16.dp) })
+    }
 }
+
+
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     PlaygroundTheme {
-        Greeting("Android")
+
     }
 }
