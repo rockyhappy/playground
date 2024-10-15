@@ -37,7 +37,7 @@ fun BlogItem(
     imageUrl: String,
     title: String,
     date: String,
-    onItemClick: (String) -> Unit = {}
+    onItemClick: () -> Unit = {}
 ) {
     ConstraintLayout(
         modifier = Modifier
@@ -45,6 +45,7 @@ fun BlogItem(
             .clip(RoundedCornerShape(8.dp))
             .background(GrayShade2)
             .padding(12.dp)
+            .clickable { onItemClick() }
 
     ) {
         val (image, column) = createRefs()

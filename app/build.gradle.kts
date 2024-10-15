@@ -73,6 +73,10 @@ dependencies {
     // Font Compose
     implementation("androidx.compose.ui:ui-text-google-fonts:1.5.4")
 
+    val nav_version = "2.7.7"
 
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation ("com.gorisse.thomas.sceneform:sceneform:1.23.0")
+    //implementation ("com.gorisse.thomas.sceneform:sceneform-assets:1.23.0")
     implementation("io.coil-kt:coil-compose:2.5.0")
 }

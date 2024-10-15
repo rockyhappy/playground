@@ -36,9 +36,12 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.devrachit.playground.R
 import com.devrachit.playground.common.Constants.Companion.blogData
 import com.devrachit.playground.presentation.components.BlogItem
+import com.devrachit.playground.presentation.navigation.App
 import com.devrachit.playground.ui.theme.GrayShade2
 import com.devrachit.playground.ui.theme.GrayShade4
 import com.devrachit.playground.ui.theme.PlaygroundTheme
@@ -49,93 +52,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            val snackbarHostState = remember { SnackbarHostState() }
-            val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
             PlaygroundTheme {
-                Scaffold(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .nestedScroll(scrollBehavior.nestedScrollConnection)
-                        .background(color = colorResource(id= R.color.background))
-                    ,
-                    topBar = {
-                    TopAppBar(
-                        title = {
-                            Text(
-                                text = "Playground",
-                                color = Color.White,
-                                modifier = Modifier
-                                    .padding(horizontal = 8.dp)
-                            )
-                        },
-                        scrollBehavior = scrollBehavior,
-                        colors = TopAppBarDefaults.mediumTopAppBarColors(containerColor = colorResource(id = R.color.teal_700))
-                    )
-                },
-                    snackbarHost = {
-                        SnackbarHost(
-                            hostState = snackbarHostState
-                        )
-                    },
-                    floatingActionButton = {
-                        ExtendedFloatingActionButton(
-                            icon = { Icon(Icons.Filled.Menu, contentDescription = null, tint= colorResource(
-                                R.color.teal_700
-                            )) },
-                            text = { Text("Some Navigation") },
-                            onClick = {  },
-                            containerColor = Color.White,
-                            contentColor = Color.Black
-                        )
-                    },
-                    floatingActionButtonPosition = FabPosition.Center
-                    ) { innerPadding ->
-                    MyApp(modifier =Modifier.padding(innerPadding),paddingValues= innerPadding)
-                }
+                App()
             }
         }
     }
 }
 
-@Composable
-fun MyApp(modifier:Modifier?= null , paddingValues: PaddingValues = PaddingValues(0.dp)){
-
-
-    LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 200.dp),
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(paddingValues)
-            .background(color = GrayShade4)
-            .padding(horizontal = 24.dp),
-        contentPadding = PaddingValues(vertical = 24.dp),
-        verticalArrangement = Arrangement.spacedBy(24.dp),
-        horizontalArrangement = Arrangement.spacedBy(24.dp)
-            ){
-        items(blogData.size) {i->
-            BlogItem(
-                imageUrl = blogData[i].imageUrl,
-                title = blogData[i].title,
-                date = blogData[i].data,
-            )
-        }
-    }
-}
 
 
 
-
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
-@Composable
-fun GreetingPreview() {
-
-        MyApp()
-
-}
-
-
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_NO, showBackground = true)
-@Composable
-fun GreetingPreview2() {
-    MyApp()
-}
