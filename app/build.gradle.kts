@@ -72,7 +72,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     // Font Compose
     implementation("androidx.compose.ui:ui-text-google-fonts:1.5.4")
-
     val nav_version = "2.7.7"
 
     implementation("androidx.navigation:navigation-compose:$nav_version")

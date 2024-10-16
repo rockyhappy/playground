@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.devrachit.playground.presentation.screens.custom_auto_complete.CustomAutoComplete
 import com.devrachit.playground.presentation.screens.homeScreen.HomeScreen
+import com.devrachit.playground.presentation.screens.magic_drawer.MagicDrawer
 import com.devrachit.playground.presentation.screens.model3d.Model3dScreen
 
 @Composable
@@ -24,6 +25,8 @@ fun App() {
         composable(Screen.AutoCompleteComponent.route) {
             CustomAutoComplete()
         }
-
+        composable(Screen.MagicDrawer.route) {
+            MagicDrawer()
+        }
     }
 }
